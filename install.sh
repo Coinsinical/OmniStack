@@ -36,8 +36,8 @@ xcachepwd=`< /dev/urandom tr -dc A-Za-z0-9 | head -c8`
 dbinstallmethod=1
 
 version() {
-  echo "version: 2.6"
-  echo "updated date: 2023-02-04"
+  echo "version: OmniStack 2.7"
+  echo "updated date: 2025-09-19"
 }
 
 Show_Help() {
