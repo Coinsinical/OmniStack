@@ -13,14 +13,16 @@ checkDownload() {
   if ! command -v icu-config >/dev/null 2>&1 || icu-config --version | grep '^3.' || [ "${Ubuntu_ver}" == "20" ]; then
     echo "Download icu..."
     # src_url=${mirror_link}/oneinstack/src/icu4c-${icu4c_ver}-src.tgz && Download_src
-	src_url=https://github.com/unicode-org/icu/releases/download/release-${icu4c_ver}/icu4c-${icu4c_ver}-src.tgz && Download_src
+	icu4c_release="${icu4c_ver//_/-}"
+	src_url=https://github.com/unicode-org/icu/releases/download/release-${icu4c_release}/icu4c-${icu4c_ver}-src.tgz && Download_src
   fi
 
   # General system utils
   if [ "${with_old_openssl_flag}" == 'y' ]; then
     echo "Download openSSL..."
     # src_url=${mirror_link}/oneinstack/src/openssl-${openssl_ver}.tar.gz && Download_src
-	src_url=https://github.com/openssl/openssl/releases/download/OpenSSL_${openssl_ver}/openssl-${openssl_ver}.tar.gz && Download_src
+	openssl_release="${openssl_ver//./_}"
+	src_url=https://github.com/openssl/openssl/releases/download/OpenSSL_${openssl_release}/openssl-${openssl_ver}.tar.gz && Download_src
     echo "Download cacert.pem..."
     src_url=https://curl.se/ca/cacert.pem && Download_src
   fi
@@ -29,7 +31,8 @@ checkDownload() {
   if [[ ${nginx_option} =~ ^[1-3]$ ]]; then
       echo "Download openSSL1.1..."
       # src_url=${mirror_link}/oneinstack/src/openssl-${openssl11_ver}.tar.gz && Download_src
-	  src_url=https://github.com/openssl/openssl/releases/download/OpenSSL_${openssl11_ver}/openssl-${openssl11_ver}.tar.gz && Download_src
+	  openssl11_release="${openssl11_ver//./_}"
+	  src_url=https://github.com/openssl/openssl/releases/download/OpenSSL_${openssl11_release}/openssl-${openssl11_ver}.tar.gz && Download_src
   fi
 
   # jemalloc
@@ -273,7 +276,7 @@ checkDownload() {
           echo "Download MySQL 5.5 source package..."
           FILE_NAME=mysql-${mysql55_ver}.tar.gz
           # src_url=${mirror_link}/oneinstack/src/mysql-5.5-fix-arm-client_plugin.patch && Download_src
-		  src_url=https://down.whsir.com/downloads/mysql-5.5-fix-arm-client_plugin.patch && Download_src
+		  src_url=https://down.whsir.com/downloads/mysql-5.5-fix-arm-client_plugin.patch 
         fi
         # start download
         src_url=${DOWN_ADDR_MYSQL}/${FILE_NAME} && Download_src
