@@ -41,7 +41,7 @@ Install_PHP82() {
   fi
 
   if [ ! -e "/usr/local/lib/pkgconfig/libargon2.pc" ]; then
-    tar xzf argon2-${argon2_ver}.tar.gz
+    tar xzf argon2-${argon2_ver}.tar.gz --transform 's/phc-winner-//'
     pushd argon2-${argon2_ver} > /dev/null
     make -j ${THREAD} && make install
     [ ! -d /usr/local/lib/pkgconfig ] && mkdir -p /usr/local/lib/pkgconfig
@@ -51,7 +51,7 @@ Install_PHP82() {
   fi
 
   if [ ! -e "/usr/local/lib/libsodium.la" ]; then
-    tar xzf libsodium-${libsodium_up_ver}.tar.gz
+    tar xzf libsodium-${libsodium_up_ver}.tar.gz --transform "s/stable/${libsodium_up_ver}/"
     pushd libsodium-${libsodium_up_ver} > /dev/null
     ./configure --disable-dependency-tracking --enable-minimal
     make -j ${THREAD} && make install
