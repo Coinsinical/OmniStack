@@ -897,8 +897,10 @@ if [ ! -e ~/.oneinstack ]; then
 fi
 
 # get the IP information
-IPADDR=$(./include/ois.${ARCH} ip_local)
-OUTIP_STATE=$(./include/ois.${ARCH} ip_state)
+# IPADDR=$(./include/ois.${ARCH} ip_local)
+# OUTIP_STATE=$(./include/ois.${ARCH} ip_state)
+IPADDR=$(curl ip.sb)
+OUTIP_STATE=US
 
 # openSSL
 . ./include/openssl.sh
