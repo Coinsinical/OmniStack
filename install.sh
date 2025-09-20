@@ -1326,10 +1326,10 @@ if [ "${memcached_flag}" == 'y' ]; then
 fi
 
 # index example
-if [ -d "${wwwroot_dir}/default" ]; then
-  . include/demo.sh
-  DEMO 2>&1 | tee -a ${oneinstack_dir}/install.log
-fi
+# if [ -d "${wwwroot_dir}/default" ]; then
+#  . include/demo.sh
+#  DEMO 2>&1 | tee -a ${oneinstack_dir}/install.log
+# fi
 
 # get web_install_dir and db_install_dir
 . include/check_dir.sh
