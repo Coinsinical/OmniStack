@@ -126,6 +126,8 @@ while :; do
       [ -n "`echo ${php_extensions} | grep -w mongodb`" ] && pecl_mongodb=1
       [ -n "`echo ${php_extensions} | grep -w swoole`" ] && pecl_swoole=1
       [ -n "`echo ${php_extensions} | grep -w xdebug`" ] && pecl_xdebug=1
+	  [ -n "`echo ${php_extensions} | grep -w event`" ] && pecl_event=1
+	  [ -n "`echo ${php_extensions} | grep -w readline`" ] && pecl_readline=1
       ;;
     --nodejs)
       nodejs_flag=y; shift 1
@@ -377,6 +379,18 @@ Uninstall_PHPext() {
     Uninstall_GraphicsMagick
     Uninstall_pecl_gmagick
   fi
+  
+  # event
+  if [ "${pecl_event}" == '1' ]; then
+    . include/pecl_event.sh
+    Uninstall_pecl_event 2>&1 | tee -a ${oneinstack_dir}/install.log
+  fi
+  
+  # readline
+  if [ "${pecl_readline}" == '1' ]; then
+    . include/pecl_readline.sh
+    Uninstall_pecl_readline
+  fi
 
   # fileinfo
   if [ "${pecl_fileinfo}" == '1' ]; then
@@ -481,11 +495,13 @@ Menu_PHPext() {
     echo -e "\t${CMSG}13${CEND}. Uninstall mongodb"
     echo -e "\t${CMSG}14${CEND}. Uninstall swoole"
     echo -e "\t${CMSG}15${CEND}. Uninstall xdebug(PHP>=5.5)"
+	echo -e "\t${CMSG}16${CEND}. Uninstall event(PHP>=5.4)"
+	echo -e "\t${CMSG}17${CEND}. Uninstall readline"
     read -e -p "Please input a number:(Default 0 press Enter) " phpext_option
     phpext_option=${phpext_option:-0}
     [ "${phpext_option}" == '0' ] && break
     array_phpext=(${phpext_option})
-    array_all=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+    array_all=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
     for v in ${array_phpext[@]}
     do
       [ -z "`echo ${array_all[@]} | grep -w ${v}`" ] && phpext_flag=1
@@ -510,6 +526,8 @@ Menu_PHPext() {
       [ -n "`echo ${array_phpext[@]} | grep -w 13`" ] && pecl_mongodb=1
       [ -n "`echo ${array_phpext[@]} | grep -w 14`" ] && pecl_swoole=1
       [ -n "`echo ${array_phpext[@]} | grep -w 15`" ] && pecl_xdebug=1
+	  [ -n "`echo ${array_phpext[@]} | grep -w 16`" ] && pecl_event=1
+	  [ -n "`echo ${array_phpext[@]} | grep -w 17`" ] && pecl_readline=1
       break
     fi
   done

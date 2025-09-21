@@ -758,6 +758,14 @@ checkDownload() {
       src_url=https://pecl.php.net/get/gmagick-${gmagick_ver}.tgz && Download_src
     fi
   fi
+  
+  # event
+  if [ "${pecl_event}" == '1' ]; then
+    echo "Download libevent..."
+    src_url= https://github.com/libevent/libevent/releases/download/release-${libevent_ver}/libevent-${libevent_ver}.tar.gz&& Download_src
+	echo "Download event..."
+	src_url= https://pecl.php.net/get/event-${event_ver}.tgz&& Download_src
+  fi
 
   # redis-server
   if [ "${redis_flag}" == 'y' ]; then

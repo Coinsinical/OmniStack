@@ -89,6 +89,8 @@ swoole_ver=6.0.1
 swoole_oldver=4.8.12
 xdebug_ver=3.1.2
 xdebug_oldver=2.9.8
+libevent_ver=2.1.12-stable
+event_ver=3.1.4
 
 # Ftp
 pureftpd_ver=1.0.51
