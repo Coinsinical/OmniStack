@@ -185,7 +185,7 @@ while :; do
     [ -n "$(echo ${php_extensions} | grep -w mongodb)" ] && pecl_mongodb=1
     [ -n "$(echo ${php_extensions} | grep -w swoole)" ] && pecl_swoole=1
     [ -n "$(echo ${php_extensions} | grep -w xdebug)" ] && pecl_xdebug=1
-	[ -n "$(echo ${php_extensions} | grep -w event)" ] && pecl_=1
+	[ -n "$(echo ${php_extensions} | grep -w event)" ] && pecl_event=1
 	[ -n "$(echo ${php_extensions} | grep -w readline)" ] && pecl_readline=1
     ;;
   --nodejs)
